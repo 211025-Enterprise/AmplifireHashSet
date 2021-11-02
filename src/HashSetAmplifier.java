@@ -27,17 +27,18 @@ public class HashSetAmplifier<T> {
                 if(i == arrSize) {
                     i = 0;
                 }
+                if(arr[i] != null && arr[i].hashCode() == (obj.hashCode())) {
+                    break;
+                }
                 // bucket is empty
                 if(arr[i] == null) {
                     arr[i] = obj;
                     // object is unique
-                    if(obj.hashCode() != arr[i].hashCode()) {
-                        objCount++;
-                        if(objCount/arrSize > loadFactor) {
-                            resize();
-                        }
-                    break;
+                    objCount++;
+                    if(((new Double(objCount)/new Double(arrSize))) > loadFactor) {
+                        resize();
                     }
+                    break;
                 }
             }
         }
