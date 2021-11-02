@@ -21,6 +21,7 @@ public class Driver {
         User user5 = new User();
         User user6 = new User();
         User user7 = new User();
+        user7.age = 50;
         User user8 = new User();
         User user9 = new User();
         User user10 = new User();
@@ -44,6 +45,12 @@ public class Driver {
 
         test.get(user9);
         System.out.println(test.getSize());
+
+        System.out.println(test.get(user7).age);
+        test.remove(user7);
+        if(test.get(user7) == null) {
+            System.out.println("success");
+        }
 
     }
 

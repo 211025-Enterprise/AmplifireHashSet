@@ -8,6 +8,7 @@ public class HashSetAmplifier<T> {
     T[] arr = (T[])new Object[arrSize];
     int objCount = 0;
     double loadFactor = 0.65;
+    T junk = (T)new Object();
 
     // add method
     public void add(T obj) {
@@ -48,12 +49,26 @@ public class HashSetAmplifier<T> {
     }
 
     // remove (optional)
-    // public T remove(T obj) {return null;}
+    public T remove(T obj) {
+        T returnObj = null;
+        int hashIndex = hash(obj);
+        if(arr[hashIndex] == null) {
+            return null;
+        }
 
-    // contains
-    public boolean contains(T obj) {
+        for(int i = hashIndex; i < arrSize; i++) {
+            if(i == arrSize) {
+                i = 0;
+            }
+            if(arr[i] != null) {
+                if(arr[i].hashCode()==obj.hashCode()) {
+                    returnObj = arr[i];
+                    arr[i] = junk;
+                }
+            }
 
-        return false;
+        }
+        return returnObj;
     }
 
     // get
@@ -68,11 +83,15 @@ public class HashSetAmplifier<T> {
             if(i == arrSize) {
                 i = 0;
             }
+            if(arr[i] == null) {
+                break;
+            }
             if (arr[i].hashCode() == obj.hashCode()) {
-                System.out.println("found");
+                //System.out.println("found");
                 return obj;
             }
         }
+        //System.out.println("not found");
         return null;
     }
 
@@ -92,7 +111,7 @@ public class HashSetAmplifier<T> {
         for(int i = 0; i < arrSize; i++) {
 
             // make sure non null element
-            if(arr[i] != null) {
+            if(arr[i] != null && arr[i].hashCode() != junk.hashCode()) {
 
                 int newHashIndex = arr[i].hashCode() % newSize;
 
