@@ -9,11 +9,13 @@ public class HashSetAmplifier<T> {
 
     // add method
     public void add(T obj) {
+
         int hashIndex = hash(obj);
 
         //make sure bucket empty
         if(arr[hashIndex] == null) {
             arr[hashIndex] = obj;
+            objCount++;
         }
 
         //if bucket is not empty -> linear probe
@@ -39,6 +41,7 @@ public class HashSetAmplifier<T> {
                 }
             }
         }
+
     }
 
     // remove (optional)
@@ -58,12 +61,18 @@ public class HashSetAmplifier<T> {
             return null;
         }
         // found return object
-        int i = hashIndex;
-        while(arr[i] != null) {
+        System.out.println(hashIndex);
+        for(int i = hashIndex; i < arrSize; i++) {
+            if(i == arrSize) {
+                i = 0;
+            }
             if (arr[i].hashCode() == obj.hashCode()) {
+                System.out.println("found");
                 return obj;
             }
-            i++;
+
+
+
         }
         return null;
     }
@@ -80,16 +89,13 @@ public class HashSetAmplifier<T> {
 
     // hash an object and return bucket index to be stored in
     private int hash(T obj) {
-        return obj.hashCode() % this.getSize();
+        return obj.hashCode() % arrSize;
+
     }
 
     @Override
     public String toString() {
         System.out.println("HASH - ");
-        for(T t: arr) {
-            //System.out.println(t.hashCode();
-        }
-
         return null;
     }
 
