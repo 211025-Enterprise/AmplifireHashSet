@@ -7,14 +7,14 @@ public class Driver {
 
         User user = new User();
         user.age = 10;
-        System.out.println(user.hashCode());
+        //System.out.println(user.hashCode());
 
         User user2 = new User();
         user2.age = 12;
-        System.out.println(user2.hashCode());
+        //System.out.println(user2.hashCode());
 
         user.age = 5;
-        System.out.println(user.hashCode());
+        //System.out.println(user.hashCode());
 
         User user3 = new User();
         User user4 = new User();
@@ -32,11 +32,13 @@ public class Driver {
         test.add(user3);
         test.add(user4);
         test.add(user5);
+        System.out.println(test.arrSize);
         test.add(user6);
         test.add(user7);
         test.add(user8);
         test.add(user9);
         test.add(user10);
+        System.out.println(test.arrSize);
 
 
 
@@ -48,9 +50,5 @@ public class Driver {
     public static class User {
         int age;
         public User() {}
-    }
-
-    public void dothing() {
-
     }
 }

@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class HashSetAmplifier<T> {
 
     // java.util.HashSet;
@@ -62,7 +64,6 @@ public class HashSetAmplifier<T> {
             return null;
         }
         // found return object
-        System.out.println(hashIndex);
         for(int i = hashIndex; i < arrSize; i++) {
             if(i == arrSize) {
                 i = 0;
@@ -71,9 +72,6 @@ public class HashSetAmplifier<T> {
                 System.out.println("found");
                 return obj;
             }
-
-
-
         }
         return null;
     }
@@ -85,7 +83,41 @@ public class HashSetAmplifier<T> {
 
     // resize array load factor
     private void resize() {
-        System.out.println("RESIZE");
+        // generate new prime number larger than current arrSize
+        int newSize = (((arrSize+1)/2)*6)+1;
+
+        T[] newArr = (T[])new Object[newSize];
+
+        // copy all elements to bigger size array
+        for(int i = 0; i < arrSize; i++) {
+
+            // make sure non null element
+            if(arr[i] != null) {
+
+                int newHashIndex = arr[i].hashCode() % newSize;
+
+                // in case of non-collision
+                if (newArr[newHashIndex] == null) {
+                    newArr[newHashIndex] = arr[i];
+                } else {
+
+                    // in case of collision, linear probing... again
+                    for (int j = newHashIndex; j < arrSize; j++) {
+                        if (j == newSize) {
+                            j = 0;
+                        }
+                        if (newArr[j] == null) {
+                            newArr[j] = arr[i];
+                        }
+                    }
+                }
+            }
+        }
+
+        arr = newArr;
+        arrSize = newSize;
+
+
     }
 
     // hash an object and return bucket index to be stored in
