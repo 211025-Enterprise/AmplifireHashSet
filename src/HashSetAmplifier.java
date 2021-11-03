@@ -7,6 +7,7 @@ public class HashSetAmplifier<T> {
     int arrSize = 11;
     T[] arr = (T[])new Object[arrSize];
     int objCount = 0;
+    int sizeCount = 0;
     double loadFactor = 0.65;
     T junk = (T)new Object();
 
@@ -19,6 +20,7 @@ public class HashSetAmplifier<T> {
         if(arr[hashIndex] == null) {
             arr[hashIndex] = obj;
             objCount++;
+            sizeCount++;
         }
 
         //if bucket is not empty -> linear probe
@@ -38,6 +40,7 @@ public class HashSetAmplifier<T> {
                     arr[i] = obj;
                     // object is unique
                     objCount++;
+                    sizeCount++;
                     if(((new Double(objCount)/new Double(arrSize))) > loadFactor) {
                         resize();
                     }
@@ -64,6 +67,7 @@ public class HashSetAmplifier<T> {
                 if(arr[i].hashCode()==obj.hashCode()) {
                     returnObj = arr[i];
                     arr[i] = junk;
+                    sizeCount--;
                 }
             }
 
@@ -97,7 +101,7 @@ public class HashSetAmplifier<T> {
 
     // size
     public int getSize() {
-        return objCount;
+        return sizeCount;
     }
 
     // resize array load factor
@@ -144,12 +148,14 @@ public class HashSetAmplifier<T> {
         return obj.hashCode() % arrSize;
 
     }
-
+    
+    /*
     @Override
     public String toString() {
         System.out.println("HASH - ");
         return null;
     }
+    */
 
 
 }
