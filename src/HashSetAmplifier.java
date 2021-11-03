@@ -19,6 +19,8 @@ public class HashSetAmplifier<T> {
             arr[hashIndex] = obj;
             sizeCount++;
             return true;
+            }
+
         }
 
         // if bucket is not empty -> linear probe
