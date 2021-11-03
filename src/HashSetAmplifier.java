@@ -1,4 +1,3 @@
-import java.util.HashSet;
 
 public class HashSetAmplifier<T> {
 
