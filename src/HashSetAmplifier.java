@@ -2,6 +2,7 @@
 public class HashSetAmplifier<T> {
 
     int sizeCount = 0;
+    int objSize = 0;
     int arrSize = 11;
     double loadFactor = 0.65;
 
@@ -18,9 +19,8 @@ public class HashSetAmplifier<T> {
         if (arr[hashIndex] == null) {
             arr[hashIndex] = obj;
             sizeCount++;
+            objSize++;
             return true;
-            }
-
         }
 
         // if bucket is not empty -> linear probe
@@ -41,7 +41,8 @@ public class HashSetAmplifier<T> {
                 if (arr[i] == null) {
                     arr[i] = obj;
                     sizeCount++;
-                    if ((double) sizeCount / (double) arrSize > loadFactor) {
+                    objSize++;
+                    if ((double) objSize / (double) arrSize > loadFactor) {
                         resize();
                     }
                     return true;
