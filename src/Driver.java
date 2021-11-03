@@ -27,6 +27,17 @@ public class Driver {
         User user10 = new User();
 
 
+        user.age = 1;
+        user2.age = 2;
+        user3.age = 3;
+        user4.age = 4;
+        user5.age = 5;
+        user6.age = 6;
+        user7.age = 7;
+        user8.age = 8;
+        user9.age = 9;
+        user10.age = 10;
+
         test.add(user);
         test.add(user2);
         test.add(user);
@@ -44,6 +55,9 @@ public class Driver {
 
 
         test.get(user9);
+
+        test.get(user10);
+
         System.out.println(test.getSize());
 
         System.out.println(test.get(user7).age);
@@ -51,6 +65,7 @@ public class Driver {
         if(test.get(user7) == null) {
             System.out.println("success");
         }
+
 
     }
 
