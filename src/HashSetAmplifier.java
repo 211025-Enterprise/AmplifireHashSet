@@ -20,6 +20,9 @@ public class HashSetAmplifier<T> {
             arr[hashIndex] = obj;
             objCount++;
             sizeCount++;
+            if(((new Double(objCount)/new Double(arrSize))) > loadFactor) {
+                resize();
+            }
         }
 
         //if bucket is not empty -> linear probe
