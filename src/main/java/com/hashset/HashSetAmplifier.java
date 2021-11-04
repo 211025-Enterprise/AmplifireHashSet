@@ -1,3 +1,4 @@
+package main.java.com.hashset;
 
 public class HashSetAmplifier<T> {
 

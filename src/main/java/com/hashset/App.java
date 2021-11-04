@@ -1,4 +1,6 @@
-public class Driver {
+package main.java.com.hashset;
+
+public class App {
 
     public static void main(String[] args) {
 
